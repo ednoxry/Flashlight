@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Light Bulb — uma experiência interativa de luz, cor e tecnologia.">
+  <title>Light Bulb — Acenda uma ideia</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Light Bulb, início">
+        <span class="brand-icon">✳</span>
+        <span>light<span class="brand-accent">bulb</span></span>
+      </a>
+      <span class="status"><span class="status-dot"></span> INTERACTIVE LAB</span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">UM EXPERIMENTO DE LUZ</p>
+      <h1>Acenda uma <span>ideia.</span></h1>
+      <p class="subtitle">
+        Um pequeno toque pode mudar todo o ambiente.
+        Experimente a luz, escolha uma cor e crie sua atmosfera.
+      </p>
+    </section>
+
+    <section class="lab" aria-label="Laboratório de luz">
+      <div class="scene" id="scene">
+        <div class="ambient-glow" id="ambientGlow"></div>
+
+        <button
+          class="bulb-button"
+          id="bulbButton"
+          type="button"
+          aria-label="Acender a lâmpada"
+          aria-pressed="false"
+        >
+          <svg class="bulb" viewBox="0 0 160 220" role="img" aria-label="Lâmpada">
+            <defs>
+              <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".95"/>
+                <stop offset="50%" stop-color="#b7c5df" stop-opacity=".4"/>
+                <stop offset="100%" stop-color="#7f8eae" stop-opacity=".65"/>
+              </linearGradient>
+              <linearGradient id="base" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#6b7280"/>
+                <stop offset="50%" stop-color="#e5e7eb"/>
+                <stop offset="100%" stop-color="#6b7280"/>
+              </linearGradient>
+            </defs>
+            <path class="glass-shell" d="M80 12 C39 12 15 42 20 79 C23 102 40 116 48 137 L48 151 L112 151 L112 137 C120 116 137 102 140 79 C145 42 121 12 80 12Z" fill="url(#glass)" stroke="#dbeafe" stroke-opacity=".7" stroke-width="2"/>
+            <path class="filament" d="M61 88 L61 105 L72 117 L88 117 L99 105 L99 88" fill="none" stroke="#fff3bf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M59 80 L59 91 M101 80 L101 91" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
+            <rect x="48" y="148" width="64" height="12" rx="3" fill="url(#base)"/>
+            <path d="M50 166 H110 M52 174 H108 M55 182 H105" stroke="#aeb8ca" stroke-width="5" stroke-linecap="round"/>
+            <path d="M61 191 H99 L94 202 H66Z" fill="#64748b"/>
+          </svg>
+          <span class="tap-hint">TOQUE PARA ACENDER</span>
+        </button>
+
+        <div class="scene-caption">
+          <span class="caption-line"></span>
+          <span id="sceneStatus">AMBIENTE DESLIGADO</span>
+          <span class="caption-line"></span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-heading">
+          <div>
+            <p class="eyebrow">CONTROLE DE ILUMINAÇÃO</p>
+            <h2>Sua atmosfera</h2>
+          </div>
+          <span class="power-indicator" id="powerIndicator">OFF</span>
+        </div>
+
+        <div class="color-options">
+          <button class="color-choice active" data-color="#b9c7ff" style="--swatch:#b9c7ff" aria-label="Luz azul" aria-pressed="true"></button>
+          <button class="color-choice" data-color="#ffd18a" style="--swatch:#ffd18a" aria-label="Luz quente" aria-pressed="false"></button>
+          <button class="color-choice" data-color="#9fffd1" style="--swatch:#9fffd1" aria-label="Luz verde" aria-pressed="false"></button>
+          <button class="color-choice" data-color="#ff9ed8" style="--swatch:#ff9ed8" aria-label="Luz rosa" aria-pressed="false"></button>
+          <span class="color-label">ESCOLHA UMA COR</span>
+        </div>
+
+        <div class="brightness-control">
+          <div class="range-label">
+            <label for="brightness">Intensidade</label>
+            <output id="brightnessValue" for="brightness">70%</output>
+          </div>
+          <input id="brightness" type="range" min="10" max="100" value="70">
+          <div class="range-ends"><span>SUAVE</span><span>INTENSA</span></div>
+        </div>
+
+        <button class="toggle-button" id="toggleButton" type="button">
+          <span id="toggleIcon">✦</span>
+          <span id="toggleText">Acender a luz</span>
+          <span class="toggle-arrow">↗</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Estatísticas">
+      <div class="stat">
+        <span class="stat-value" id="clickCount">00</span>
+        <span class="stat-label">TOQUES</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value" id="currentColor">BLUE</span>
+        <span class="stat-label">COR ATUAL</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value" id="currentBrightness">70%</span>
+        <span class="stat-label">INTENSIDADE</span>
+      </div>
+    </section>
+
+    <footer>
+      <span>LIGHT BULB <span class="footer-dot">●</span> FEITO PARA EXPERIMENTAR</span>
+      <span>HTML · CSS · JS</span>
+    </footer>
+  </main>
+</body>
+</html>
